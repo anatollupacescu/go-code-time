@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"testing"
+	"unsafe"
 )
 
 type s struct {
 	name string
+	data []byte
 }
 
 func (s *s) setName(n string) s {
@@ -14,7 +16,18 @@ func (s *s) setName(n string) s {
 	return *s
 }
 
-func Test1(t *testing.T) {
+func Test(t *testing.T) {
+	var a s
+	size := unsafe.Sizeof(a)
+	fmt.Println(size)
+
+	var b *s = &a
+	size = unsafe.Sizeof(b)
+	fmt.Println(size)
+}
+
+func fest(t *testing.T) {
+
 	s := new(s)
 	k := s.setName("test")
 
