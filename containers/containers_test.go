@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"testing"
-	"unsafe"
 )
 
 type (
@@ -20,12 +18,10 @@ type (
 )
 
 func processValueMap(data valueMap) {
-	fmt.Printf("size of value map: %v bytes\n", unsafe.Sizeof(data))
 	data[0] = newDummyUser("value")
 }
 
 func processPointerMap(data pointerMap) {
-	fmt.Printf("size of pointer map: %v bytes\n", unsafe.Sizeof(data))
 	s := newDummyUser("pointer")
 	data[0] = &s
 }
@@ -34,8 +30,6 @@ func Test(t *testing.T) {
 	s := "initial"
 
 	u := newDummyUser(s)
-
-	fmt.Printf("size of the user: %v\n", unsafe.Sizeof(u))
 
 	valueMap := map[int]user{0: u}
 

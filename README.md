@@ -1,7 +1,7 @@
 # Pointers
 
-1. value types vs pointer types vs reference types
 1. pointer receivers vs value receivers
+1. value types vs pointer types vs reference types
 1. collection of pointers vs collection of values
 
 ## Links
