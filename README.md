@@ -19,8 +19,8 @@ Using values as function call arguments also makes sense if structs are small an
 
 Use pointer receiver:
 1. to change the internal state of the object.
-1. when referencing to atomic types like sync.Mutex.
-1. to signal to user that this variable is not supposed to be copied: `*fs.File`
+1. when referencing to atomic types like `sync.Mutex`.
+1. to signal to user that this variable is not supposed to be copied: `*fs.File` or `*testing.T`
 1. you need to re-slice or reallocate the slice or otherwise change the underlying backing data structure.
 
 ## General advices regarding pointers
