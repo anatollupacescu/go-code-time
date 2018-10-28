@@ -13,24 +13,24 @@ Strong reasons for a value receiver:
  1. the source for that value is changing: an instance of `time.Time`
  1. implement the `prototype` pattern
 
-Before using a value receiver we must ask ourselves: If the method does not mutate its receiver, does it need to be a method?
+Before using a value receiver we must ask ourselves: If the method does not mutate its receiver, does it need to be a method? (ex5)
 
-Using values as function call arguments also makes sense if structs are small and likely to stay that way `Point2D{x,y}`
+Using values as function call arguments also makes sense if structs are **small** and likely to stay that way `Point2D{x,y}`
 
 Use pointer receiver:
 1. to change the internal state of the object.
 1. when referencing to atomic types like `sync.Mutex`.
 1. to signal to user that this variable is not supposed to be copied: `*fs.File` or `*testing.T`
-1. you need to re-slice or reallocate the slice or otherwise change the underlying backing data structure.
+1. you need reallocate the slice or otherwise change the underlying backing data structure.
 
 ## General advices regarding pointers
-Don't use them only to improve speed, unless there's an explicit requirement and benchmarking.
+Don't use them only to improve speed, unless there's an explicit requirement and benchmark tests.
 Don't use pointers to basic data types unless `null` has semantic significance, or the pointer is required by the used library, like in the case of serialization
-Slices or maps of pointers is a corner case, should be only use when there's a strong case for it, like the need to change the state of the individual elements in the collection. They don't normally add any benefits but do add overhead because of increased chance of cache misses.
+Slices or maps of pointers is a corner case, should be only use when there's a strong case for it, like the need to change the state of the individual elements in the collection. They don't normally add any benefits but do add overhead because of increased chance of cache misses (gc pressure)
 Because in `Go` every assignment is a copy - if by some requirement you **must** use an array (and not a slice) then as a workaround it makes sense to use an array of pointers.
 
 #### Pointers as arguments:
-If you pass them as arguments the expectation is still that the client will not change the state the pointer is referencing.
+If you pass them as arguments the expectation is still that the client will not change the state the pointer is referencing, unless it's reflected in the function name.
 #### Bonus:
 How large is large? Assume it's equivalent to passing all its elements as arguments to the method. If that feels too large, it's also too large for the receiver.
 
@@ -38,4 +38,4 @@ How large is large? Assume it's equivalent to passing all its elements as argume
 1. https://www.callicoder.com/golang-pointers/ (the basics)
 1. https://www.ardanlabs.com/blog/2014/12/using-pointers-in-go.html
 1. https://go101.org/article/pointer.html
-1. https://dave.cheney.net/2018/07/12/slices-from-the-ground-up
+1. https://dave.cheney.net/2018/07/12/slices-from-the-ground-ue

@@ -5,37 +5,18 @@ import (
 	"testing"
 )
 
-type (
-	s struct {
-		val string
-	}
-	p struct {
-		val string
-	}
-)
-
-//gives you a copy of the original (t)
-func (r s) change(s string) {
-	r.val = s
+type container struct {
+	val string
 }
 
-func TestValueReceiver(t *testing.T) {
-
-	v := s{val: "fizz"}
-	v.change("buzz")
-
-	fmt.Println(v) //prints: {fizz}
-}
-
-//pointer
-func (r *p) change(s string) {
-	r.val = s
+func (r *container) setVal(newVal string) {
+	r.val = newVal
 }
 
 func TestPointerReceiver(t *testing.T) {
-	v := p{val: "fizz"}
+	v := container{val: "fizz"}
 
-	v.change("buzz")
+	v.setVal("buzz")
 	fmt.Println(v) //prints: {buzz}
 }
 
