@@ -39,3 +39,8 @@ How large is large? Assume it's equivalent to passing all its elements as argume
 1. https://www.ardanlabs.com/blog/2014/12/using-pointers-in-go.html
 1. https://go101.org/article/pointer.html
 1. https://dave.cheney.net/2018/07/12/slices-from-the-ground-ue
+
+### Note
+To run the **ex9** please start a posgres container like so:
+
+`docker run --rm -e POSTGRES_USER=user -e POSTGRES_PASSWORD=pass -p 5432:5432 postgres`
