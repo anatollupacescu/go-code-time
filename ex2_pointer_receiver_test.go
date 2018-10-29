@@ -29,9 +29,8 @@ func (r *name) update(replacement string) {
 
 func TestReplacing(t *testing.T) {
 
-	fmt.Println("TestReplacing:")
-
 	var v1 name = "fizz"
+	fmt.Println(v1) //prints: {fizz}
 
 	v1.update("buzz")
 	fmt.Println(v1) //prints: {buzz}
