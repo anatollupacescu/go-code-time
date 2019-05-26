@@ -5,31 +5,20 @@ import (
 	"testing"
 )
 
-type walletAmmount int
+func Test101(t *testing.T) {
+	var f float64
 
-func (wa *walletAmmount) add(i int) {
-	*wa += walletAmmount(i)
-}
+	fc := f
 
-func TestBasicsPointer(t *testing.T) {
+	fc++
 
-	var wa walletAmmount
+	fmt.Printf("got fc=%v and original=%v\n", fc, f)
 
-	wa.add(100)
+	fp := &f
 
-	fmt.Println(wa)
+	*fp++
 
-	copy := wa
-
-	copy.add(50)
-
-	fmt.Printf("original=%v, copy=%v\n", wa, copy)
-
-	ptr := &wa
-
-	ptr.add(99)
-
-	fmt.Printf("original=%v, ptr=%v\n", wa, *ptr)
+	fmt.Printf("got fp=%v and original=%v\n", *fp, f)
 }
 
 func TestForLoop(t *testing.T) {
@@ -39,10 +28,8 @@ func TestForLoop(t *testing.T) {
 	for i, v := range arr {
 		fmt.Printf("got arr[%d]=%v at addr=%v and v at addr=%v\n", i, arr[i], &arr[i], &v)
 	}
-}
 
-type t struct {
-	i float32
+	//the danger!
 }
 
 func TestFunctionCall(t *testing.T) {
