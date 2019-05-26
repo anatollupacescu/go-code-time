@@ -40,3 +40,22 @@ func TestForLoop(t *testing.T) {
 		fmt.Printf("got arr[%d]=%v at addr=%v and v at addr=%v\n", i, arr[i], &arr[i], &v)
 	}
 }
+
+type t struct {
+	i float32
+}
+
+func TestFunctionCall(t *testing.T) {
+
+	tt := complex(1, 2)
+
+	func(tf complex128) {
+		fmt.Printf("original addr=%v\n in func addr=%v\n", &tt, &tf)
+	}(tt)
+
+	fmt.Println()
+
+	func(tf *complex128) {
+		fmt.Printf("original addr=%v\n in func addr=%v\n", &tt, tf)
+	}(&tt)
+}
