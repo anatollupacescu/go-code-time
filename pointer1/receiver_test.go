@@ -46,3 +46,13 @@ func TestValueReceiverMakesACopy(t *testing.T) {
 		t.Fatal()
 	}
 }
+
+//Bonus
+
+func (wa walletAmmount) computeInterest(i float32) float64 {
+	return 0.0
+}
+
+func computeInterest(wa walletAmmount, i float32) float64 {
+	return 0.0
+}
