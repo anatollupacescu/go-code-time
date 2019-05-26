@@ -31,3 +31,12 @@ func TestBasicsPointer(t *testing.T) {
 
 	fmt.Printf("original=%v, ptr=%v\n", wa, *ptr)
 }
+
+func TestForLoop(t *testing.T) {
+
+	arr := []int{6, 7}
+
+	for i, v := range arr {
+		fmt.Printf("got arr[%d]=%v at addr=%v and v at addr=%v\n", i, arr[i], &arr[i], &v)
+	}
+}
