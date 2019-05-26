@@ -12,7 +12,9 @@ type bigType complex128
 func TestSizes1(t *testing.T) {
 
 	var c bigType = 1
-	var p *bigType = &c
+	var p *bigType
+
+	p = &c
 
 	fmt.Printf("big type size: %d\n", unsafe.Sizeof(c)) //16 bytes
 	fmt.Printf("pointer size: %d\n", unsafe.Sizeof(p))  //8	bytes
