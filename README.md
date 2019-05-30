@@ -8,14 +8,11 @@
 
 When choosing the receiver type - "If in doubt, use a pointer" - or Dave Cheney's advice: `you should prefer declaring methods on *T unless you have a strong reason to do otherwise.`
 
-Strong reasons for a value receiver:
- 1. avoid getting things changed by surprise via a pointer
- 1. the source for that value is changing: an instance of `time.Time`
- 1. implement the `prototype` pattern
+The reasons for using a value receiver are to avoid getting things changed by surprise via a pointer or if it yields more readable code.
 
-Before using a value receiver we must ask ourselves: If the method does not mutate its receiver, does it need to be a method? (ex5)
+Before using a value receiver we must ask ourselves: If the method does not mutate its receiver, does it need to be a method?
 
-Using values as function call arguments also makes sense if structs are **small** and likely to stay that way `Point2D{x,y}`
+Using values as function call arguments also makes sense if structs are **small** and likely to stay that way `Point2D{x,y}` as this approach is more GC friendly.
 
 Use pointer receiver:
 1. to change the internal state of the object.
@@ -24,13 +21,14 @@ Use pointer receiver:
 1. you need reallocate the slice or otherwise change the underlying backing data structure.
 
 ## General advices regarding pointers
-Don't use them only to improve speed, unless there's an explicit requirement and benchmark tests.
-Don't use pointers to basic data types unless `null` has semantic significance, or the pointer is required by the used library, like in the case of serialization
-Slices or maps of pointers is a corner case, should be only use when there's a strong case for it, like the need to change the state of the individual elements in the collection. They don't normally add any benefits but do add overhead because of increased chance of cache misses (gc pressure)
-Because in `Go` every assignment is a copy - if by some requirement you **must** use an array (and not a slice) then as a workaround it makes sense to use an array of pointers.
+* Don't use them only to improve speed, unless there's an explicit requirement and benchmark tests.
+* Don't use pointers to basic data types unless `null` has semantic significance, or the pointer is required by the used library, like in the case of serialization.
+* Slices or maps of pointers is a corner case, should be only use when there's a strong case for it, like the need to change the state of the individual elements in the collection. They don't normally add any benefits but do add overhead because of increased chance of cache misses (gc pressure)
+* Because in `Go` every assignment is a copy - if by some requirement you **must** use an array (and not a slice) then as a workaround it makes sense to use an array of pointers.
 
 #### Pointers as arguments:
 If you pass them as arguments the expectation is still that the client will not change the state the pointer is referencing, unless it's reflected in the function name.
+
 #### Bonus:
 How large is large? Assume it's equivalent to passing all its elements as arguments to the method. If that feels too large, it's also too large for the receiver.
 

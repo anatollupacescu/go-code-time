@@ -22,8 +22,8 @@ const (
 )
 
 type EntitledUser struct {
-	Id    int64       `json:"id"`
-	Title null.String `json:"title"`
+	Id    int64       `db:"id" json:"id"`
+	Title null.String `db:"title"`
 }
 
 func TestDbUnmarshalling(t *testing.T) {
@@ -68,7 +68,7 @@ func populateDbTable(db *sql.DB) {
 
 func createDbTable(db *sql.DB) {
 	_, err := db.Exec(
-`CREATE TABLE IF NOT EXISTS UserTitle(
+		`CREATE TABLE IF NOT EXISTS UserTitle(
 ID 				SERIAL PRIMARY KEY     NOT NULL,
 TITLE           TEXT)`)
 

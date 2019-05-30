@@ -5,6 +5,9 @@ import (
 	"testing"
 )
 
+/**
+using pointers we can mutate a certain memory location cheaply (memory wise)
+*/
 func Test101(t *testing.T) {
 	var f float64
 
@@ -21,17 +24,25 @@ func Test101(t *testing.T) {
 	fmt.Printf("got fp=%v and original=%v\n", *fp, f)
 }
 
+/**
+some language constructs will make a copy under-the-hood
+*/
 func TestForLoop(t *testing.T) {
 
-	arr := []int{6, 7}
+	values := []int{1, 2, 3, 4}
 
-	for i, v := range arr {
-		fmt.Printf("got arr[%d]=%v at addr=%v and v at addr=%v\n", i, arr[i], &arr[i], &v)
+	for val := range values {
+		fmt.Println(val)
+		go func() {
+			fmt.Println("inside", val)
+		}()
 	}
-
-	//the danger!
 }
 
+/**
+a function call will make a copy of the arguments
+FYI methods are a particular case of functions and same rules apply
+*/
 func TestFunctionCall(t *testing.T) {
 
 	tt := complex(1, 2)

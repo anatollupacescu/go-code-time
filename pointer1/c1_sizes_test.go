@@ -9,6 +9,11 @@ import (
 
 type bigType complex128
 
+/**
+basic types
+
+more info on types
+*/
 func TestSizes1(t *testing.T) {
 
 	var c bigType = 1
@@ -16,10 +21,15 @@ func TestSizes1(t *testing.T) {
 
 	p = &c
 
+	*p += 8
+
 	fmt.Printf("big type size: %d\n", unsafe.Sizeof(c)) //16 bytes
 	fmt.Printf("pointer size: %d\n", unsafe.Sizeof(p))  //8	bytes
 }
 
+/**
+compound types
+*/
 type example struct {
 	i int
 	c *bigType
@@ -33,4 +43,8 @@ func TestSizes2(t *testing.T) {
 
 	fmt.Printf("struct size: %d\n", unsafe.Sizeof(e))   //40	bytes
 	fmt.Printf("pointer size: %d\n", unsafe.Sizeof(&e)) //8	bytes
+}
+
+func do(arr *[]string) {
+
 }
